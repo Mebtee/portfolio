@@ -1,0 +1,13 @@
+# Normalise text files to LF in the repository and in checkouts, so the site
+# behaves identically on Windows and POSIX (no CRLF churn in diffs).
+* text=auto eol=lf
+
+# Fonts and images are binary — never touch line endings.
+*.woff2 binary
+*.woff  binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.ico   binary
