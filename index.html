@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Tamene Behailu | Full-Stack Software Engineer</title>
+<meta name="description" content="Tamene Behailu is a Full-Stack Software Engineer with experience in React, Next.js, TypeScript, Node.js, Python, databases, APIs, cloud deployment, and software quality assurance.">
+<meta name="author" content="Tamene Behailu">
+<link rel="canonical" href="https://tamenebehailu.dev/">
+
+<meta name="theme-color" content="#070a10">
+<meta name="color-scheme" content="dark">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tamene Behailu">
+<meta property="og:title" content="Tamene Behailu | Full-Stack Software Engineer">
+<meta property="og:description" content="Full-Stack Software Engineer with QA experience. Building reliable software for real-world problems — React, Next.js, TypeScript, Node.js, Python, databases, APIs, cloud deployment, and software quality assurance.">
+<meta property="og:url" content="https://tamenebehailu.dev/">
+<meta property="og:image" content="https://tamenebehailu.dev/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tamene Behailu | Full-Stack Software Engineer">
+<meta name="twitter:description" content="Full-Stack Software Engineer with QA experience. Building reliable software for real-world problems.">
+<meta name="twitter:image" content="https://tamenebehailu.dev/assets/img/og-image.png">
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/favicon.svg">
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Typeface: Inter, self-hosted. Preloaded so text paints with the real
+     typeface on first frame instead of reflowing when the swap lands. -->
+<link rel="preload" href="assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+</head>
+
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ============================ NAVIGATION ============================ -->
+<header class="site-header" id="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="#home" aria-label="Tamene Behailu — home">
+      <span class="brand__mark" aria-hidden="true">TB</span>
+      <span class="brand__text">
+        <span class="brand__name">Tamene Behailu</span>
+        <span class="brand__role">Full-Stack Software Engineer</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      <ul class="nav__list" id="nav-list">
+        <li><a class="nav__link" href="#home">Home</a></li>
+        <li><a class="nav__link" href="#about">About</a></li>
+        <li><a class="nav__link" href="#experience">Experience</a></li>
+        <li><a class="nav__link" href="#projects">Projects</a></li>
+        <li><a class="nav__link" href="#skills">Skills</a></li>
+        <li><a class="nav__link" href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav__cta">
+        <a class="btn btn--primary btn--sm" href="#contact">Let's Talk</a>
+      </div>
+    </nav>
+
+    <button class="nav-toggle" id="nav-toggle" type="button"
+            aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation menu">
+      <span class="nav-toggle__box" aria-hidden="true">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </span>
+    </button>
+  </div>
+</header>
+<div class="nav-scrim" id="nav-scrim" hidden></div>
+
+<main id="main">
+
+<!-- ============================== HERO =============================== -->
+<section class="hero" id="home">
+  <div class="hero__bg" aria-hidden="true">
+    <div class="hero__grid"></div>
+    <div class="hero__glow hero__glow--a"></div>
+    <div class="hero__glow hero__glow--b"></div>
+    <svg class="hero__network" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" focusable="false">
+      <defs>
+        <linearGradient id="edgeFade" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.30"/>
+          <stop offset="55%" stop-color="#3b82f6" stop-opacity="0.14"/>
+          <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <g stroke="url(#edgeFade)" stroke-width="1" fill="none">
+        <path d="M120 150 L330 90 L470 210 L640 130 L800 260 L990 200"/>
+        <path d="M60 340 L250 400 L420 320 L560 440 L740 360 L900 470 L1140 400"/>
+        <path d="M180 560 L350 620 L520 540 L690 620 L860 560 L1060 640"/>
+        <path d="M330 90 L250 400 M470 210 L420 320 M640 130 L560 440 M800 260 L740 360 M990 200 L900 470"/>
+        <path d="M350 620 L560 440 M690 620 L740 360 M1060 640 L900 470"/>
+      </g>
+      <g fill="#7dd3fc">
+        <circle cx="330" cy="90" r="2.4" opacity=".55"/>
+        <circle cx="470" cy="210" r="2" opacity=".4"/>
+        <circle cx="640" cy="130" r="2.6" opacity=".5"/>
+        <circle cx="800" cy="260" r="2" opacity=".38"/>
+        <circle cx="250" cy="400" r="2.2" opacity=".45"/>
+        <circle cx="560" cy="440" r="2.8" opacity=".55"/>
+        <circle cx="740" cy="360" r="2" opacity=".4"/>
+        <circle cx="900" cy="470" r="2.4" opacity=".45"/>
+        <circle cx="350" cy="620" r="2" opacity=".38"/>
+        <circle cx="690" cy="620" r="2.2" opacity=".42"/>
+        <circle cx="1060" cy="640" r="2" opacity=".34"/>
+      </g>
+    </svg>
+    <div class="hero__scanlines"></div>
+  </div>
+
+  <div class="container hero__inner">
+    <p class="eyebrow">
+      <span class="eyebrow__dot" aria-hidden="true"></span>
+      Full-Stack Software Engineer
+    </p>
+
+    <h1 class="hero__title">
+      Building reliable software for
+      <span class="text-gradient">real-world problems.</span>
+    </h1>
+
+    <p class="hero__lead">
+      I'm a Full-Stack Software Engineer with experience across frontend development,
+      backend systems, databases, APIs, deployment, and software quality assurance.
+    </p>
+
+    <p class="hero__location">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/>
+        <circle cx="12" cy="10" r="2.6"/>
+      </svg>
+      Addis Ababa, Ethiopia
+    </p>
+
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="#projects">
+        View My Work
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M12.5 5.5 19 12l-6.5 6.5"/></svg>
+      </a>
+      <a class="btn btn--ghost" href="#contact">Contact Me</a>
+    </div>
+
+    <ul class="hero__social" aria-label="Professional profiles">
+      <li>
+        <a class="social-link" href="https://github.com/Mebtee" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.6 2.3 5.5 2.6 5.5 2.6a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9c0 4.6 2.7 5.7 5.5 6-.4.4-.5.9-.5 1.5V18"/>
+          </svg>
+          GitHub
+        </a>
+      </li>
+      <li>
+        <a class="social-link" href="https://www.linkedin.com/in/tames-network/" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="3" y="3" width="18" height="18" rx="3"/>
+            <path d="M7.5 10.5V17M7.5 7.4v.1M11.5 17v-3.7a2.3 2.3 0 0 1 4.6 0V17M11.5 10.5V17"/>
+          </svg>
+          LinkedIn
+        </a>
+      </li>
+      <li>
+        <a class="social-link" href="mailto:tamenebehailu@gmail.com">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="3" y="5" width="18" height="14" rx="3"/>
+            <path d="m4 8 8 5.5L20 8"/>
+          </svg>
+          Email
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <a class="hero__scroll" href="#status" aria-label="Scroll to next section">
+    <span class="hero__scroll-track" aria-hidden="true"><span class="hero__scroll-dot"></span></span>
+  </a>
+</section>
+
+<!-- ======================= PROFESSIONAL STATUS ====================== -->
+<section class="status" id="status" aria-labelledby="status-heading">
+  <h2 class="visually-hidden" id="status-heading">Professional status</h2>
+  <div class="container">
+    <div class="status__bar reveal">
+      <p class="status__label">
+        <span class="status__pulse" aria-hidden="true"></span>
+        Available for Opportunities
+      </p>
+      <ul class="status__roles">
+        <li class="status__role status__role--primary">Full-Stack Software Engineering</li>
+        <li class="status__role">Software Engineering</li>
+        <li class="status__role">QA / Software Testing</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== ABOUT ============================== -->
+<section class="section" id="about" aria-labelledby="about-heading">
+  <div class="container about">
+    <div class="about__text">
+      <p class="eyebrow reveal"><span class="eyebrow__dot" aria-hidden="true"></span>About</p>
+      <h2 class="section__title reveal" id="about-heading">About Me</h2>
+
+      <div class="prose reveal">
+        <p>
+          I'm a Full-Stack Software Engineer with experience in software development and quality
+          assurance, focused on building reliable, practical, and production-ready applications.
+        </p>
+        <p>
+          I enjoy turning real-world problems into software solutions — from designing responsive
+          frontend interfaces and developing backend APIs to working with databases, automation,
+          testing, and deployment.
+        </p>
+        <p>
+          My QA experience has also strengthened the way I approach development — paying attention
+          to functionality, edge cases, usability, and reliability throughout the software lifecycle.
+        </p>
+      </div>
+
+      <ul class="about__strengths reveal">
+        <li>
+          <span class="about__strength-title">Full-stack delivery</span>
+          <span class="about__strength-text">React and Next.js interfaces backed by Node.js, Python, REST APIs, and relational databases.</span>
+        </li>
+        <li>
+          <span class="about__strength-title">Quality built in</span>
+          <span class="about__strength-text">QA background applied throughout development — not only at the end of a release.</span>
+        </li>
+        <li>
+          <span class="about__strength-title">Ship and maintain</span>
+          <span class="about__strength-text">Deployment, hosting, troubleshooting, and infrastructure support on Vercel, Render, and cPanel environments.</span>
+        </li>
+      </ul>
+    </div>
+
+    <aside class="profile-card reveal" aria-labelledby="profile-heading">
+      <h3 class="profile-card__heading" id="profile-heading">Professional Profile</h3>
+      <dl class="profile-card__list">
+        <div class="profile-card__row">
+          <dt>Role</dt>
+          <dd>Full-Stack Software Engineer</dd>
+        </div>
+        <div class="profile-card__row">
+          <dt>Specialization</dt>
+          <dd>Web Applications &amp; QA</dd>
+        </div>
+        <div class="profile-card__row">
+          <dt>Location</dt>
+          <dd>Addis Ababa, Ethiopia</dd>
+        </div>
+        <div class="profile-card__row">
+          <dt>Email</dt>
+          <dd><a href="mailto:tamenebehailu@gmail.com">tamenebehailu@gmail.com</a></dd>
+        </div>
+      </dl>
+      <a class="btn btn--primary btn--block" href="mailto:tamenebehailu@gmail.com">
+        Send an Email
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h13M12.5 5.5 19 12l-6.5 6.5"/></svg>
+      </a>
+    </aside>
+  </div>
+</section>
+
+<!-- =========================== TECHNICAL SKILLS ====================== -->
+<section class="section section--alt" id="skills" aria-labelledby="skills-heading">
+  <div class="container">
+    <header class="section__header reveal">
+      <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Toolkit</p>
+      <h2 class="section__title" id="skills-heading">Technical Skills</h2>
+      <p class="section__subtitle">
+        Technologies I build and work with across frontend, backend, data, quality, and infrastructure.
+      </p>
+    </header>
+
+    <div class="skills-grid">
+      <article class="skill-group reveal">
+        <h3 class="skill-group__title">
+          <svg class="skill-group__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="m8.5 8.5-4 3.5 4 3.5M15.5 8.5l4 3.5-4 3.5M13.5 5l-3 14"/>
+          </svg>
+          Frontend
+        </h3>
+        <ul class="badge-list">
+          <li class="badge">React.js</li>
+          <li class="badge">Next.js</li>
+          <li class="badge">TypeScript</li>
+          <li class="badge">JavaScript</li>
+          <li class="badge">HTML5</li>
+          <li class="badge">CSS3</li>
+          <li class="badge">Responsive Design</li>
+        </ul>
+      </article>
+
+      <article class="skill-group reveal">
+        <h3 class="skill-group__title">
+          <svg class="skill-group__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="3" y="4" width="18" height="6" rx="2"/>
+            <rect x="3" y="14" width="18" height="6" rx="2"/>
+            <path d="M7 7v.1M7 17v.1"/>
+          </svg>
+          Backend
+        </h3>
+        <ul class="badge-list">
+          <li class="badge">Node.js</li>
+          <li class="badge">Express.js</li>
+          <li class="badge">Python</li>
+          <li class="badge">Flask</li>
+          <li class="badge">REST APIs</li>
+          <li class="badge">API Integration</li>
+        </ul>
+      </article>
+
+      <article class="skill-group reveal">
+        <h3 class="skill-group__title">
+          <svg class="skill-group__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <ellipse cx="12" cy="6" rx="8" ry="3.2"/>
+            <path d="M4 6v12c0 1.8 3.6 3.2 8 3.2s8-1.4 8-3.2V6M4 12c0 1.8 3.6 3.2 8 3.2s8-1.4 8-3.2"/>
+          </svg>
+          Databases
+        </h3>
+        <ul class="badge-list">
+          <li class="badge">PostgreSQL</li>
+          <li class="badge">MySQL</li>
+          <li class="badge">SQL</li>
+          <li class="badge">Supabase</li>
+          <li class="badge">Database Design</li>
+          <li class="badge">CRUD</li>
+        </ul>
+      </article>
+
+      <article class="skill-group reveal">
+        <h3 class="skill-group__title">
+          <svg class="skill-group__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M9 3.5h6M10 3.5v5.2L4.8 18a2 2 0 0 0 1.8 3h10.8a2 2 0 0 0 1.8-3L14 8.7V3.5"/>
+            <path d="M7.5 14.5h9"/>
+          </svg>
+          QA &amp; Testing
+        </h3>
+        <ul class="badge-list">
+          <li class="badge">Manual Testing</li>
+          <li class="badge">Functional Testing</li>
+          <li class="badge">Regression Testing</li>
+          <li class="badge">Test Case Design</li>
+          <li class="badge">Bug Tracking</li>
+          <li class="badge">API Testing</li>
+          <li class="badge">Usability Testing</li>
+        </ul>
+      </article>
+
+      <article class="skill-group reveal">
+        <h3 class="skill-group__title">
+          <svg class="skill-group__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M7.5 18.5a4.5 4.5 0 0 1-.6-8.96A5.5 5.5 0 0 1 17.6 9.3a3.6 3.6 0 0 1-.6 7.14"/>
+            <path d="M12 12.5v6M9.6 15.4 12 18l2.4-2.6"/>
+          </svg>
+          Cloud &amp; DevOps
+        </h3>
+        <ul class="badge-list">
+          <li class="badge">Git</li>
+          <li class="badge">GitHub</li>
+          <li class="badge">Docker</li>
+          <li class="badge">Vercel</li>
+          <li class="badge">Render</li>
+          <li class="badge">AWS</li>
+          <li class="badge">Azure</li>
+          <li class="badge">cPanel</li>
+        </ul>
+      </article>
+
+      <article class="skill-group reveal">
+        <h3 class="skill-group__title">
+          <svg class="skill-group__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="3.2"/>
+            <path d="M12 3v3.2M12 17.8V21M21 12h-3.2M6.2 12H3M18.4 5.6l-2.3 2.3M7.9 16.1l-2.3 2.3M18.4 18.4l-2.3-2.3M7.9 7.9 5.6 5.6"/>
+          </svg>
+          Other
+        </h3>
+        <ul class="badge-list">
+          <li class="badge">Web Scraping</li>
+          <li class="badge">Playwright</li>
+          <li class="badge">Automation</li>
+          <li class="badge">Data Processing</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== FEATURED PROJECTS ===================== -->
+<section class="section" id="projects" aria-labelledby="projects-heading">
+  <div class="container">
+    <header class="section__header reveal">
+      <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Portfolio</p>
+      <h2 class="section__title" id="projects-heading">Selected Projects</h2>
+      <p class="section__subtitle">
+        Real applications built across full-stack development, data systems, and AI.
+      </p>
+    </header>
+
+    <!-- Primary project -->
+    <article class="project project--featured reveal" aria-labelledby="project-1-title">
+      <div class="project__media">
+        <img
+          src="assets/img/project-ethio-exchange.svg"
+          alt="Abstract interface preview of the Ethio Exchange application: a table of Ethiopian banks with buying and selling currency rates, plus a currency converter panel."
+          width="1200" height="750" loading="lazy" decoding="async">
+        <p class="project__media-note">Abstract interface preview</p>
+      </div>
+
+      <div class="project__body">
+        <p class="project__kicker">Featured Project</p>
+        <h3 class="project__title" id="project-1-title">Ethio Exchange</h3>
+        <p class="project__subtitle">Ethiopian Bank Exchange Rates &amp; Currency Converter</p>
+        <p class="project__desc">
+          Full-stack financial web platform for comparing foreign-currency exchange rates across
+          Ethiopian banks.
+        </p>
+
+        <ul class="project__features">
+          <li><span class="tick" aria-hidden="true"></span>Bank exchange-rate comparison</li>
+          <li><span class="tick" aria-hidden="true"></span>Buying and selling rates</li>
+          <li><span class="tick" aria-hidden="true"></span>Currency conversion</li>
+          <li><span class="tick" aria-hidden="true"></span>Bank rankings</li>
+          <li><span class="tick" aria-hidden="true"></span>Individual bank rate pages</li>
+          <li><span class="tick" aria-hidden="true"></span>Automated data collection via web scraping</li>
+          <li><span class="tick" aria-hidden="true"></span>Backend APIs</li>
+          <li><span class="tick" aria-hidden="true"></span>Database-driven data</li>
+        </ul>
+
+        <h4 class="project__tech-label">Technology</h4>
+        <ul class="badge-list badge-list--tight">
+          <li class="badge">React</li>
+          <li class="badge">TypeScript</li>
+          <li class="badge">Node.js</li>
+          <li class="badge">REST APIs</li>
+          <li class="badge">PostgreSQL / Supabase</li>
+          <li class="badge">Playwright</li>
+          <li class="badge">Web Scraping</li>
+          <li class="badge">Vercel</li>
+          <li class="badge">Render</li>
+        </ul>
+
+        <div class="project__actions">
+          <a class="btn btn--primary" href="https://ethioexchange.live/en" target="_blank" rel="noopener noreferrer">
+            Live Demo
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 5h5v5M19 5l-8 8M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+            <span class="visually-hidden">— opens ethioexchange.live in a new tab</span>
+          </a>
+          <a class="btn btn--ghost" href="https://github.com/Mebtee" target="_blank" rel="noopener noreferrer"
+             aria-label="GitHub profile of Tamene Behailu">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.6 2.3 5.5 2.6 5.5 2.6a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9c0 4.6 2.7 5.7 5.5 6-.4.4-.5.9-.5 1.5V18"/>
+            </svg>
+            GitHub
+            <span class="visually-hidden">profile — opens github.com/Mebtee in a new tab</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Secondary project -->
+    <article class="project project--secondary reveal" aria-labelledby="project-2-title">
+      <div class="project__media">
+        <img
+          src="assets/img/project-cardiomegaly.svg"
+          alt="Abstract interface preview of the Cardiomegaly Detection System: an image upload area alongside a Normal or Cardiomegaly classification result panel."
+          width="1200" height="750" loading="lazy" decoding="async">
+        <p class="project__media-note">Abstract interface preview</p>
+      </div>
+
+      <div class="project__body">
+        <p class="project__kicker">Machine Learning</p>
+        <h3 class="project__title" id="project-2-title">Cardiomegaly Detection System</h3>
+        <p class="project__desc">
+          AI-powered chest X-ray classification system that classifies uploaded X-ray images
+          as Normal or Cardiomegaly.
+        </p>
+        <p class="project__note">
+          Built as an engineering and machine-learning demonstration. Not a medical device and not
+          a substitute for professional medical diagnosis.
+        </p>
+
+        <ul class="project__features">
+          <li><span class="tick" aria-hidden="true"></span>X-ray image upload</li>
+          <li><span class="tick" aria-hidden="true"></span>Machine-learning classification</li>
+          <li><span class="tick" aria-hidden="true"></span>React frontend</li>
+          <li><span class="tick" aria-hidden="true"></span>Flask backend</li>
+          <li><span class="tick" aria-hidden="true"></span>API integration</li>
+          <li><span class="tick" aria-hidden="true"></span>Database integration</li>
+          <li><span class="tick" aria-hidden="true"></span>Deployed web application</li>
+        </ul>
+
+        <h4 class="project__tech-label">Technology</h4>
+        <ul class="badge-list badge-list--tight">
+          <li class="badge">Python</li>
+          <li class="badge">TensorFlow</li>
+          <li class="badge">Flask</li>
+          <li class="badge">React</li>
+          <li class="badge">MySQL</li>
+          <li class="badge">Machine Learning</li>
+        </ul>
+
+        <div class="project__actions">
+          <a class="btn btn--primary" href="https://cardio-final-ten.vercel.app/" target="_blank" rel="noopener noreferrer">
+            Live Demo
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 5h5v5M19 5l-8 8M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+            <span class="visually-hidden">— opens cardio-final-ten.vercel.app in a new tab</span>
+          </a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ======================= PROFESSIONAL EXPERIENCE =================== -->
+<section class="section section--alt" id="experience" aria-labelledby="experience-heading">
+  <div class="container">
+    <header class="section__header reveal">
+      <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Career</p>
+      <h2 class="section__title" id="experience-heading">Professional Experience</h2>
+    </header>
+
+    <ol class="timeline">
+      <li class="timeline__item reveal">
+        <div class="timeline__marker" aria-hidden="true"></div>
+        <div class="timeline__card">
+          <header class="timeline__head">
+            <h3 class="timeline__role">Full-Stack Software Engineer</h3>
+            <p class="timeline__org">ELECTRA TRADE LTD</p>
+          </header>
+          <ul class="meta-list">
+            <li class="meta meta--type">Part-time</li>
+            <li class="meta">Jun 2026 &ndash; Present</li>
+            <li class="meta">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/>
+              </svg>
+              Addis Ababa, Ethiopia &middot; Hybrid
+            </li>
+          </ul>
+          <p class="timeline__summary">
+            Develop and maintain full-stack web applications using React.js, Next.js, TypeScript,
+            Node.js, REST APIs, and databases.
+          </p>
+          <ul class="timeline__points">
+            <li>Build responsive frontend interfaces</li>
+            <li>Integrate backend services and APIs</li>
+            <li>Develop database-driven features</li>
+            <li>Troubleshoot application issues</li>
+            <li>Resolve bugs</li>
+            <li>Improve application functionality and performance</li>
+            <li>Deploy and maintain web applications</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="timeline__item reveal">
+        <div class="timeline__marker" aria-hidden="true"></div>
+        <div class="timeline__card">
+          <header class="timeline__head">
+            <h3 class="timeline__role">Full-Stack Software Engineer <span class="timeline__sep">|</span> Web Developer <span class="timeline__sep">|</span> IT &amp; Network Engineer</h3>
+            <p class="timeline__org">Unitech E Power and Trading PLC</p>
+          </header>
+          <ul class="meta-list">
+            <li class="meta meta--type">Full-time</li>
+            <li class="meta">Jan 2026 &ndash; Present</li>
+            <li class="meta">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/>
+              </svg>
+              Addis Ababa, Ethiopia &middot; Hybrid
+            </li>
+          </ul>
+          <ul class="timeline__points">
+            <li>Develop and maintain responsive web applications</li>
+            <li>Work with React.js, JavaScript, HTML, CSS and databases</li>
+            <li>Implement frontend and backend functionality</li>
+            <li>Customize and troubleshoot web applications</li>
+            <li>Manage cPanel hosting environments</li>
+            <li>Support enterprise networking and IT infrastructure</li>
+            <li>Work with Huawei Datacom, Access, Collaboration, IdeaHub, storage, and enterprise access solutions</li>
+            <li>Provide technical support and presales/post-sales assistance</li>
+            <li>Troubleshoot customer and infrastructure issues</li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="timeline__item reveal">
+        <div class="timeline__marker" aria-hidden="true"></div>
+        <div class="timeline__card">
+          <header class="timeline__head">
+            <h3 class="timeline__role">Software Quality Assurance Engineer</h3>
+            <p class="timeline__org">Pixel Tech and Promotion</p>
+          </header>
+          <ul class="meta-list">
+            <li class="meta meta--type">Contract</li>
+            <li class="meta">Sep 2025 &ndash; Dec 2025</li>
+            <li class="meta">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/>
+              </svg>
+              Addis Ababa, Ethiopia &middot; Hybrid
+            </li>
+          </ul>
+          <ul class="timeline__points">
+            <li>Performed functional testing</li>
+            <li>Performed regression testing</li>
+            <li>Performed usability testing</li>
+            <li>Designed and executed test cases</li>
+            <li>Identified and documented defects</li>
+            <li>Reproduced and tracked software bugs</li>
+            <li>Collaborated with developers to verify fixes</li>
+            <li>Prepared test reports and validation results</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========================= QA / QUALITY MINDSET ==================== -->
+<section class="section" id="quality" aria-labelledby="quality-heading">
+  <div class="container">
+    <header class="section__header reveal">
+      <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Quality</p>
+      <h2 class="section__title" id="quality-heading">Engineering With a Quality Mindset</h2>
+      <p class="section__subtitle">
+        Beyond building software, I approach development with a strong focus on reliability,
+        usability, and quality. My QA experience includes functional testing, regression testing,
+        test case design, defect tracking, API testing, and collaboration with developers to verify fixes.
+      </p>
+    </header>
+
+    <ol class="flow reveal">
+      <li class="flow__step">
+        <span class="flow__index" aria-hidden="true">01</span>
+        <span class="flow__label">Test</span>
+      </li>
+      <li class="flow__step" aria-hidden="true"><span class="flow__arrow">→</span></li>
+      <li class="flow__step">
+        <span class="flow__index" aria-hidden="true">02</span>
+        <span class="flow__label">Identify</span>
+      </li>
+      <li class="flow__step" aria-hidden="true"><span class="flow__arrow">→</span></li>
+      <li class="flow__step">
+        <span class="flow__index" aria-hidden="true">03</span>
+        <span class="flow__label">Fix</span>
+      </li>
+      <li class="flow__step" aria-hidden="true"><span class="flow__arrow">→</span></li>
+      <li class="flow__step">
+        <span class="flow__index" aria-hidden="true">04</span>
+        <span class="flow__label">Verify</span>
+      </li>
+      <li class="flow__step" aria-hidden="true"><span class="flow__arrow">→</span></li>
+      <li class="flow__step">
+        <span class="flow__index" aria-hidden="true">05</span>
+        <span class="flow__label">Release</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================== EDUCATION ========================== -->
+<section class="section section--alt" id="education" aria-labelledby="education-heading">
+  <div class="container">
+    <header class="section__header reveal">
+      <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Background</p>
+      <h2 class="section__title" id="education-heading">Education</h2>
+    </header>
+
+    <div class="edu-grid">
+      <article class="edu-card reveal">
+        <svg class="edu-card__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="m12 4 9 4.5-9 4.5-9-4.5L12 4Z"/>
+          <path d="M7 10.8V16c0 1.4 2.2 2.6 5 2.6s5-1.2 5-2.6v-5.2M20.5 9v5"/>
+        </svg>
+        <h3 class="edu-card__title">Addis Ababa University</h3>
+        <p class="edu-card__program">Software Engineering</p>
+      </article>
+
+      <article class="edu-card reveal">
+        <svg class="edu-card__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <rect x="3" y="4" width="18" height="16" rx="3"/>
+          <path d="M3 9h18M7.5 13h5M7.5 16h8"/>
+        </svg>
+        <h3 class="edu-card__title">IBT College of Canada</h3>
+        <p class="edu-card__program">Software Development &amp; Quality Assurance</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== CAREER FOCUS ========================== -->
+<section class="section" id="focus" aria-labelledby="focus-heading">
+  <div class="container">
+    <div class="focus">
+      <div class="focus__text reveal">
+        <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Direction</p>
+        <h2 class="section__title" id="focus-heading">What I'm Looking For</h2>
+        <p class="focus__lead">
+          I'm interested in opportunities where I can contribute to building reliable software
+          products while continuing to grow across full-stack development, backend engineering,
+          cloud technologies, and software quality assurance.
+        </p>
+      </div>
+
+      <ul class="role-tags reveal">
+        <li class="role-tag role-tag--primary">
+          Full-Stack Software Engineer
+          <span class="role-tag__hint">Primary target</span>
+        </li>
+        <li class="role-tag">Software Engineer</li>
+        <li class="role-tag">Full-Stack Developer</li>
+        <li class="role-tag">QA Engineer</li>
+        <li class="role-tag">Software Test Engineer</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== CONTACT ============================ -->
+<section class="section section--contact" id="contact" aria-labelledby="contact-heading">
+  <div class="container">
+    <div class="contact reveal">
+      <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Contact</p>
+      <h2 class="section__title" id="contact-heading">Let's Build Something Useful.</h2>
+      <p class="contact__lead">
+        Have a project, opportunity, or technical problem to discuss? I'd be happy to connect.
+      </p>
+
+      <dl class="contact__details">
+        <div class="contact__detail">
+          <dt>Email</dt>
+          <dd><a href="mailto:tamenebehailu@gmail.com">tamenebehailu@gmail.com</a></dd>
+        </div>
+        <div class="contact__detail">
+          <dt>Location</dt>
+          <dd>Addis Ababa, Ethiopia</dd>
+        </div>
+      </dl>
+
+      <div class="contact__actions">
+        <a class="btn btn--primary btn--lg" href="mailto:tamenebehailu@gmail.com">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 8 8 5.5L20 8"/>
+          </svg>
+          Email Me
+        </a>
+        <a class="btn btn--ghost btn--lg" href="https://www.linkedin.com/in/tames-network/" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="3" y="3" width="18" height="18" rx="3"/>
+            <path d="M7.5 10.5V17M7.5 7.4v.1M11.5 17v-3.7a2.3 2.3 0 0 1 4.6 0V17M11.5 10.5V17"/>
+          </svg>
+          LinkedIn
+          <span class="visually-hidden">— opens LinkedIn profile in a new tab</span>
+        </a>
+        <a class="btn btn--ghost btn--lg" href="https://github.com/Mebtee" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.6 2.3 5.5 2.6 5.5 2.6a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9c0 4.6 2.7 5.7 5.5 6-.4.4-.5.9-.5 1.5V18"/>
+          </svg>
+          GitHub
+          <span class="visually-hidden">— opens github.com/Mebtee in a new tab</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- =============================== FOOTER ============================ -->
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__brand">
+      <span class="brand__mark brand__mark--lg" aria-hidden="true">TB</span>
+      <div>
+        <p class="site-footer__name">Tamene Behailu</p>
+        <p class="site-footer__role">Full-Stack Software Engineer <span class="timeline__sep">|</span> QA Engineer</p>
+      </div>
+    </div>
+
+    <nav class="site-footer__nav" aria-label="Footer">
+      <a href="https://github.com/Mebtee" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/tames-network/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:tamenebehailu@gmail.com">Email</a>
+    </nav>
+  </div>
+
+  <div class="container site-footer__bottom">
+    <p>&copy; 2026 Tamene Behailu</p>
+    <a class="site-footer__top" href="#home">
+      Back to top
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V6M5.5 12.5 12 6l6.5 6.5"/></svg>
+    </a>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Tamene Behailu",
+  "jobTitle": "Full-Stack Software Engineer",
+  "alternateJobTitle": "QA Engineer",
+  "description": "Full-Stack Software Engineer with experience in React, Next.js, TypeScript, Node.js, Python, databases, APIs, cloud deployment, and software quality assurance.",
+  "email": "mailto:tamenebehailu@gmail.com",
+  "url": "https://tamenebehailu.dev/",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Addis Ababa",
+    "addressCountry": "ET"
+  },
+  "sameAs": [
+    "https://github.com/Mebtee",
+    "https://www.linkedin.com/in/tames-network/"
+  ],
+  "knowsAbout": [
+    "React.js", "Next.js", "TypeScript", "JavaScript", "Node.js", "Express.js",
+    "Python", "Flask", "PostgreSQL", "MySQL", "Supabase", "REST APIs",
+    "Software Quality Assurance", "Test Automation", "Docker", "Vercel", "Render",
+    "AWS", "Azure", "cPanel", "Web Scraping", "Playwright"
+  ],
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Addis Ababa University" },
+    { "@type": "CollegeOrUniversity", "name": "IBT College of Canada" }
+  ],
+  "hasOccupation": {
+    "@type": "Occupation",
+    "name": "Full-Stack Software Engineer",
+    "occupationLocation": { "@type": "City", "name": "Addis Ababa, Ethiopia" }
+  }
+}
+</script>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
