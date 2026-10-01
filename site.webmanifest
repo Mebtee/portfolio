@@ -1,0 +1,18 @@
+{
+  "name": "Tamene Behailu — Full-Stack Software Engineer",
+  "short_name": "Tamene Behailu",
+  "description": "Full-Stack Software Engineer with experience in React, Next.js, TypeScript, Node.js, Python, databases, APIs, cloud deployment, and software quality assurance.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#070a10",
+  "theme_color": "#070a10",
+  "icons": [
+    {
+      "src": "assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
