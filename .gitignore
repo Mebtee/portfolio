@@ -1,0 +1,12 @@
+# Build / tooling output
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Lighthouse / temp
+*.report.json
+.lighthouseci/
+
+# Local env
+.env
+.env.local
