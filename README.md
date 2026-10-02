@@ -135,6 +135,9 @@ link rather than an invented one.
 
 ## Deployment
 
+Live at **https://portfolio-tamene-behailu.vercel.app/** (Vercel, no build step — the repo
+root is the output directory).
+
 It is a static site, so any of these work as-is:
 
 ```bash
@@ -148,12 +151,13 @@ npx vercel --prod
 # Cloudflare Pages — build command: none, output directory: .
 ```
 
-Before deploying, replace the placeholder domain. It currently appears in four places:
+The domain is declared in four files, and every one of them must match the host you deploy
+to or search engines will be told the real site lives somewhere else:
 
 - `index.html` — `<link rel="canonical">`, `og:url`, `og:image`, `twitter:image`
-- `index.html` — the JSON-LD `Person` block (`url`)
+- `index.html` — the JSON-LD `Person` block (`url`, `image`)
 - `robots.txt` — `Sitemap:`
-- `sitemap.xml` — `<loc>`
+- `sitemap.xml` — `<loc>` (and `lastmod`, which should be the date of the deploy)
 
 The social card bakes the name, role and logo in rather than the domain, so it needs no
 regeneration when the host changes. Rebuild it only if that copy changes:
