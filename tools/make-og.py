@@ -26,9 +26,7 @@ gd = ImageDraw.Draw(glow)
 gd.ellipse([-220, -300, 520, 250], fill=(14, 58, 92))
 gd.ellipse([820, 380, 1420, 820], fill=(28, 30, 86))
 glow = glow.filter(ImageFilter.GaussianBlur(140))
-img = Image.blend(img, Image.new("RGB", (W, H), (0, 0, 0)), 0.0)
-px_img = img
-px = px_img.load()
+px = img.load()
 gp = glow.load()
 for y in range(H):
     for x in range(W):
@@ -61,24 +59,25 @@ SEGOE = "C:/Windows/Fonts/segoeui.ttf"
 SEGOE_B = "C:/Windows/Fonts/segoeuib.ttf"
 SEGOE_SB = "C:/Windows/Fonts/seguisb.ttf"
 
-f_eyebrow = ImageFont.truetype("C:/Windows/Fonts/consola.ttf", 21) if False else ImageFont.truetype(SEGOE_SB, 22)
+f_eyebrow = ImageFont.truetype(SEGOE_SB, 22)
 f_name    = ImageFont.truetype(SEGOE_B, 78)
 f_title   = ImageFont.truetype(SEGOE, 40)
 f_meta    = ImageFont.truetype(SEGOE, 25)
-f_mark    = ImageFont.truetype(SEGOE_B, 34)
 
 LEFT = 92
 TOP  = 190
 
-# monogram
-d.rounded_rectangle([LEFT, TOP-88, LEFT+70, TOP-18], radius=16,
-                    fill=(14, 32, 50), outline=(56,189,248), width=2)
-tb = "TB"
-bb = d.textbbox((0,0), tb, font=f_mark)
-d.text((LEFT + (70-(bb[2]-bb[0]))/2 - bb[0], TOP-72 - bb[1]), tb, font=f_mark, fill=(232,246,255))
+# logo — the supplied personal logo, on its own light plate (it is opaque
+# near-white by design, which reads correctly on this dark card)
+LOGO = Image.open("assets/images/logo.png").convert("RGB").resize((70, 70), Image.LANCZOS)
+plate = Image.new("RGB", (86, 86), (248, 249, 250))
+plate.paste(LOGO, (8, 8))
+mask = Image.new("L", (86, 86), 0)
+ImageDraw.Draw(mask).rounded_rectangle([0, 0, 85, 85], radius=16, fill=255)
+img.paste(plate, (LEFT - 8, TOP - 96), mask)
 
 # eyebrow
-d.text((LEFT, TOP+8), "FULL-STACK SOFTWARE ENGINEER", font=f_eyebrow, fill=ACCENT)
+d.text((LEFT, TOP+8), "FULL-STACK SOFTWARE ENGINEER  ·  QA ENGINEER", font=f_eyebrow, fill=ACCENT)
 
 # name
 d.text((LEFT, TOP+52), "Tamene Behailu", font=f_name, fill=TEXT)
@@ -92,7 +91,7 @@ d.line([(LEFT+124, TOP+232), (LEFT+260, TOP+232)], fill=ACCENT2, width=3)
 
 # footer meta
 d.text((LEFT, H-96), "Addis Ababa, Ethiopia", font=f_meta, fill=FAINT)
-d.text((LEFT, H-60), "React  ·  Next.js  ·  TypeScript  ·  Node.js  ·  Python  ·  QA",
+d.text((LEFT, H-60), "React  ·  Next.js  ·  TypeScript  ·  Node.js  ·  Python  ·  TensorFlow  ·  QA",
        font=ImageFont.truetype(SEGOE, 22), fill=(110, 126, 148))
 
 img.save("assets/img/og-image.png", "PNG", optimize=True)
