@@ -986,11 +986,9 @@ main { position: relative; z-index: 1; }
   background: #080c14;
   line-height: 0;
 }
-.project__media img {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-}
+/* Sizing and cropping are handled by .project__shot, which takes the ratio
+   from each image's real dimensions. The previous fixed `aspect-ratio:16/10`
+   with `object-fit:cover` cropped 18-28% off these screenshots. */
 .project__media-note {
   position: absolute;
   right: 0.7rem;
@@ -1040,28 +1038,6 @@ main { position: relative; z-index: 1; }
   line-height: 1.55;
 }
 
-.project__features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-  gap: 0.5rem 1.25rem;
-  margin-bottom: var(--sp-6);
-}
-.project__features li {
-  position: relative;
-  padding-left: 1.55rem;
-  color: var(--text-muted);
-  font-size: 0.925rem;
-  line-height: 1.5;
-}
-.tick {
-  position: absolute;
-  left: 0;
-  top: 0.42em;
-  width: 6px; height: 11px;
-  border-right: 1.8px solid var(--accent);
-  border-bottom: 1.8px solid var(--accent);
-  transform: rotate(42deg);
-}
 
 .project__tech-label {
   margin-bottom: 0.6rem;
@@ -1089,15 +1065,13 @@ main { position: relative; z-index: 1; }
     align-items: stretch;
   }
   .project--featured .project__media {
+    display: grid;
     border-bottom: 0;
     border-right: 1px solid var(--border);
-    display: flex;
-    align-items: center;
   }
-  .project--featured .project__media img {
-    aspect-ratio: 4 / 3;
-    max-height: 100%;
-  }
+  /* Fill the panel and letterbox instead of leaving dead space under the shot. */
+  .project--featured .project__shot { height: 100%; aspect-ratio: auto; }
+  .project--featured .project__shot img { object-fit: contain; }
   .project--featured .project__body { padding: clamp(1.75rem, 3vw, 2.75rem); }
   .project--featured .project__title { font-size: clamp(1.5rem, 1.2rem + 1.1vw, 2.05rem); }
 }
@@ -1110,18 +1084,222 @@ main { position: relative; z-index: 1; }
     align-items: stretch;
   }
   .project--secondary .project__media {
+    display: grid;
     border-bottom: 0;
     border-right: 1px solid var(--border);
-    display: flex;
-    align-items: center;
   }
-  .project--secondary .project__media img {
-    aspect-ratio: 4 / 3;
-    max-height: 100%;
-  }
+  .project--secondary .project__shot { height: 100%; aspect-ratio: auto; }
+  .project--secondary .project__shot img { object-fit: contain; }
 }
 
 .projects-stack { display: grid; gap: var(--sp-7); }
+
+/* ------------------------------- filters ------------------------------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: var(--sp-6);
+}
+.filter {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 550;
+  padding: 0.42rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 180ms var(--ease), border-color 180ms var(--ease),
+              background 180ms var(--ease);
+}
+.filter:hover { color: var(--text); border-color: var(--border-strong); background: var(--surface-2); }
+.filter[aria-pressed="true"] {
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.filter:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.project.is-hidden { display: none; }
+
+/* --------------------------- screenshot gallery ------------------------ */
+/* A <button>, because the screenshot is interactive. The ratio comes from each
+   image's real dimensions via --ar, so nothing is ever cropped: below the
+   layout breakpoints the frame is the image's own shape, and inside the
+   two-column card layouts the frame fills the panel and the images letterbox. */
+.project__shot {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  aspect-ratio: var(--ar, 16 / 10);
+  background: #080c14;
+  font: inherit;
+  color: inherit;
+  cursor: zoom-in;
+}
+.project__shot:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
+.project__shot img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 420ms var(--ease);
+}
+.project__shot img.is-on { opacity: 1; }
+/* Hover (and keyboard focus) reveals the second screenshot. Both stay in the
+   DOM and both carry alt text, so this is presentation only. */
+.project__shot img + img { opacity: 0; }
+.project__shot:hover img + img,
+.project__shot:focus-visible img + img { opacity: 1; }
+.project__shot:hover img:first-of-type,
+.project__shot:focus-visible img:first-of-type { opacity: 0; }
+
+.project__shot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7, 10, 16, 0.5), transparent 42%);
+  opacity: 0;
+  transition: opacity 260ms var(--ease);
+  pointer-events: none;
+}
+.project__shot:hover::after { opacity: 1; }
+
+@media (hover: none) {
+  /* No hover: show both shots stacked rather than hiding the second. */
+  .project__shot { aspect-ratio: auto; display: grid; gap: 2px; align-content: start; }
+  .project__shot img,
+  .project__shot img + img { position: static; opacity: 1; width: 100%; height: auto; }
+  .project__shot img + img { opacity: 0.92; }
+  .project__shot:hover img + img { opacity: 0.92; }
+  .project__shot::after { display: none; }
+}
+
+/* ------------------------------ dialogs ------------------------------- */
+.pdetail, .lightbox {
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: 18px;
+  background: var(--surface-solid);
+  color: var(--text);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  max-height: min(90vh, 900px);
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.pdetail { width: min(1040px, calc(100vw - 2rem)); }
+.pdetail::backdrop, .lightbox::backdrop { background: rgba(3, 5, 9, 0.78); backdrop-filter: blur(4px); }
+
+.pdetail__head { position: relative; padding: 1.6rem 1.6rem 1rem; }
+.pdetail__kicker {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.pdetail__title { margin: 0 0 0.3rem; font-size: clamp(1.35rem, 1.1rem + 1.2vw, 1.8rem); line-height: 1.2; }
+.pdetail__sub { margin: 0; color: var(--text-muted); font-size: 0.95rem; }
+.pdetail__close, .lightbox__close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  display: grid;
+  place-items: center;
+  width: 36px; height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 180ms var(--ease), border-color 180ms var(--ease);
+}
+.pdetail__close:hover, .lightbox__close:hover { color: var(--text); border-color: var(--border-strong); }
+.pdetail__close .icon, .lightbox__close .icon { width: 1.1rem; height: 1.1rem; }
+
+.pdetail__shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 0.6rem;
+  padding: 0 1.6rem;
+}
+.pdetail__shot {
+  display: block;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #080c14;
+  cursor: zoom-in;
+}
+.pdetail__shot img { display: block; width: 100%; height: auto; }
+.pdetail__shot:hover { border-color: var(--border-accent); }
+
+.pdetail__facts { margin: 1.5rem 1.6rem 1.2rem; display: grid; gap: 1rem; }
+.pdetail__facts > div {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 0.9rem;
+  align-items: start;
+}
+.pdetail__facts dt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 0.15rem;
+}
+.pdetail__facts dd { margin: 0; color: var(--text-muted); line-height: 1.62; font-size: 0.94rem; }
+.pdetail > .badge-list { padding: 0 1.6rem; margin-bottom: 1.4rem; }
+.pdetail > .project__note { margin: 0 1.6rem 1.4rem; }
+.pdetail__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  padding: 0 1.6rem 1.6rem;
+  border-top: 1px solid var(--border);
+  margin-top: 0.4rem;
+  padding-top: 1.3rem;
+}
+
+/* ------------------------------ lightbox ------------------------------ */
+.lightbox {
+  width: min(1400px, calc(100vw - 2rem));
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  display: none;
+}
+.lightbox[open] { display: block; }
+.lightbox__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #080c14;
+}
+.lightbox__cap { margin: 0.8rem 0 0; color: var(--text-muted); font-size: 0.85rem; text-align: center; }
+.lightbox__close { top: 0.6rem; right: 0.6rem; background: rgba(7, 10, 16, 0.9); }
+
+@media (max-width: 640px) {
+  .pdetail__head, .pdetail__shots, .pdetail__facts { padding-inline: 1.1rem; }
+  .pdetail__facts > div { grid-template-columns: 1fr; gap: 0.2rem; }
+  .pdetail__actions { padding-inline: 1.1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project__shot img { transition: none; }
+}
 
 /* =========================== 11. TIMELINE ============================= */
 .timeline {

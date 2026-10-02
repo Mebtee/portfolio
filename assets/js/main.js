@@ -280,4 +280,126 @@
     if (!target) return;
     target.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth', block: 'start' });
   });
+
+  /* ------------------------------------------------------------------
+     6. Project detail dialogs and the shared screenshot viewer.
+     Native <dialog>, so the browser already provides the modal semantics,
+     focus containment, Escape-to-close and inerting of the page behind.
+     ------------------------------------------------------------------ */
+  var lightbox   = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+  var lightboxCap = document.getElementById('lightbox-cap');
+
+  function openDialog(dlg) {
+    if (!dlg) return;
+    if (typeof dlg.showModal === 'function') {
+      if (!dlg.open) dlg.showModal();
+    } else {
+      /* Very old browsers: fall back to a non-modal open. Still readable,
+         just without the backdrop or focus containment. */
+      dlg.setAttribute('open', '');
+    }
+  }
+
+  function closeDialog(dlg) {
+    if (!dlg || !dlg.open) return;
+    if (typeof dlg.close === 'function') dlg.close();
+    else dlg.removeAttribute('open');
+  }
+
+  /* "View Project" buttons. */
+  var openers = document.querySelectorAll('[data-open]');
+  Array.prototype.forEach.call(openers, function (btn) {
+    btn.addEventListener('click', function () {
+      openDialog(document.getElementById(btn.getAttribute('data-open')));
+    });
+  });
+
+  /* Explicit close buttons, including ones inside the viewer. */
+  var closers = document.querySelectorAll('[data-close]');
+  Array.prototype.forEach.call(closers, function (btn) {
+    btn.addEventListener('click', function () {
+      closeDialog(btn.closest('dialog'));
+    });
+  });
+
+  /* Clicking the backdrop (i.e. the dialog element itself, not its content)
+     dismisses, matching the behaviour people expect from a lightbox. */
+  var allDialogs = document.querySelectorAll('dialog');
+  Array.prototype.forEach.call(allDialogs, function (dlg) {
+    dlg.addEventListener('click', function (e) {
+      if (e.target !== dlg) return;
+      var r = dlg.getBoundingClientRect();
+      var inside = e.clientX >= r.left && e.clientX <= r.right &&
+                   e.clientY >= r.top  && e.clientY <= r.bottom;
+      if (!inside) closeDialog(dlg);
+    });
+  });
+
+  /* The shared viewer. Any element carrying data-zoom opens it. */
+  function openViewer(src, alt) {
+    if (!lightbox || !lightboxImg) return;
+    lightboxImg.setAttribute('src', src);
+    lightboxImg.setAttribute('alt', alt || '');
+    if (lightboxCap) lightboxCap.textContent = alt || '';
+    openDialog(lightbox);
+  }
+
+  var zoomers = document.querySelectorAll('[data-zoom]');
+  Array.prototype.forEach.call(zoomers, function (btn) {
+    btn.addEventListener('click', function () {
+      openViewer(btn.getAttribute('data-zoom'), btn.getAttribute('data-zoom-alt') || '');
+    });
+  });
+
+  /* Card galleries. The frame is a <button> holding both screenshots: the
+     first is shown, the second is revealed on hover or focus. Whichever frame
+     was clicked opens in the viewer. Indexed per card, so each project starts
+     on its own first screenshot. */
+  var galleries = document.querySelectorAll('.project__shot');
+  Array.prototype.forEach.call(galleries, function (shot) {
+    var first = shot.querySelector('img');
+    if (first) first.classList.add('is-on');
+
+    shot.addEventListener('click', function (e) {
+      var img = e.target && e.target.closest ? e.target.closest('img') : null;
+      if (!img) img = first;
+      openViewer(
+        img ? img.getAttribute('src') : '',
+        img ? img.getAttribute('alt') || '' : ''
+      );
+    });
+  });
+
+  /* ------------------------------------------------------------------
+     7. Project filtering. Buttons only; the grid is a plain list of
+     articles, so this is an enhancement over content already on the page.
+     ------------------------------------------------------------------ */
+  var filterBtns = document.querySelectorAll('.filter');
+  var projects   = document.querySelectorAll('#project-list .project');
+  var countEl    = document.getElementById('project-count');
+
+  function applyFilter(cat) {
+    var shown = 0;
+    Array.prototype.forEach.call(projects, function (p) {
+      var cats = (p.getAttribute('data-cats') || '').split(/\s+/);
+      var match = cat === 'all' || cats.indexOf(cat) !== -1;
+      p.classList.toggle('is-hidden', !match);
+      if (match) shown++;
+    });
+    if (countEl) {
+      countEl.textContent = cat === 'all'
+        ? 'Showing all ' + shown + ' projects.'
+        : 'Showing ' + shown + ' of ' + projects.length + ' projects.';
+    }
+  }
+
+  Array.prototype.forEach.call(filterBtns, function (btn) {
+    btn.addEventListener('click', function () {
+      Array.prototype.forEach.call(filterBtns, function (b) {
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      applyFilter(btn.getAttribute('data-filter'));
+    });
+  });
 })();

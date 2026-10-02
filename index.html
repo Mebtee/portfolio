@@ -444,124 +444,224 @@
   <div class="container">
     <header class="section__header reveal">
       <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Portfolio</p>
-      <h2 class="section__title" id="projects-heading">Selected Projects</h2>
+      <h2 class="section__title" id="projects-heading">Featured Projects</h2>
       <p class="section__subtitle">
-        Real applications built across full-stack development, data systems, and AI.
+        Four real applications — financial data, machine learning, content automation,
+        and AI-assisted creative workflows. Screenshots are the actual running software.
       </p>
     </header>
 
-    <!-- Primary project -->
-    <article class="project project--featured reveal" aria-labelledby="project-1-title">
-      <div class="project__media">
-        <img
-          src="assets/img/project-ethio-exchange.svg"
-          alt="Abstract interface preview of the Ethio Exchange application: a table of Ethiopian banks with buying and selling currency rates, plus a currency converter panel."
-          width="1200" height="750" loading="lazy" decoding="async">
-        <p class="project__media-note">Abstract interface preview</p>
-      </div>
+    <!-- Filters. Plain buttons with aria-pressed; the grid is a plain list of
+         <article>s, so the section is complete and readable with JS disabled. -->
+    <div class="filters reveal" role="group" aria-label="Filter projects by category">
+      <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+      <button class="filter" type="button" data-filter="full-stack" aria-pressed="false">Full-Stack</button>
+      <button class="filter" type="button" data-filter="ai" aria-pressed="false">AI / ML</button>
+      <button class="filter" type="button" data-filter="automation" aria-pressed="false">Automation</button>
+      <button class="filter" type="button" data-filter="creative" aria-pressed="false">Creative AI</button>
+    </div>
+    <p class="visually-hidden" role="status" id="project-count" aria-live="polite"></p>
 
-      <div class="project__body">
-        <p class="project__kicker">Featured Project</p>
-        <h3 class="project__title" id="project-1-title">Ethio Exchange</h3>
-        <p class="project__subtitle">Ethiopian Bank Exchange Rates &amp; Currency Converter</p>
-        <p class="project__desc">
-          Full-stack financial web platform for comparing foreign-currency exchange rates across
-          Ethiopian banks.
-        </p>
+    <div class="projects-stack" id="project-list">
 
-        <ul class="project__features">
-          <li><span class="tick" aria-hidden="true"></span>Bank exchange-rate comparison</li>
-          <li><span class="tick" aria-hidden="true"></span>Buying and selling rates</li>
-          <li><span class="tick" aria-hidden="true"></span>Currency conversion</li>
-          <li><span class="tick" aria-hidden="true"></span>Bank rankings</li>
-          <li><span class="tick" aria-hidden="true"></span>Individual bank rate pages</li>
-          <li><span class="tick" aria-hidden="true"></span>Automated data collection via web scraping</li>
-          <li><span class="tick" aria-hidden="true"></span>Backend APIs</li>
-          <li><span class="tick" aria-hidden="true"></span>Database-driven data</li>
-        </ul>
-
-        <h4 class="project__tech-label">Technology</h4>
-        <ul class="badge-list badge-list--tight">
-          <li class="badge">React</li>
-          <li class="badge">TypeScript</li>
-          <li class="badge">Node.js</li>
-          <li class="badge">REST APIs</li>
-          <li class="badge">PostgreSQL / Supabase</li>
-          <li class="badge">Playwright</li>
-          <li class="badge">Web Scraping</li>
-          <li class="badge">Vercel</li>
-          <li class="badge">Render</li>
-        </ul>
-
-        <div class="project__actions">
-          <a class="btn btn--primary" href="https://ethioexchange.live/en" target="_blank" rel="noopener noreferrer">
-            Live Demo
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 5h5v5M19 5l-8 8M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
-            <span class="visually-hidden">— opens ethioexchange.live in a new tab</span>
-          </a>
-          <a class="btn btn--ghost" href="https://github.com/Mebtee" target="_blank" rel="noopener noreferrer"
-             aria-label="GitHub profile of Tamene Behailu">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.6 2.3 5.5 2.6 5.5 2.6a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9c0 4.6 2.7 5.7 5.5 6-.4.4-.5.9-.5 1.5V18"/>
-            </svg>
-            GitHub
-            <span class="visually-hidden">profile — opens github.com/Mebtee in a new tab</span>
-          </a>
+      <!-- ============ 1. Ethio Exchange ============ -->
+      <article class="project project--featured reveal" data-cats="full-stack"
+               aria-labelledby="project-1-title">
+        <div class="project__media">
+          <!-- A button, not a bare <img>: the screenshot is interactive (it
+               opens the viewer), so it has to be reachable by keyboard. The
+               ratio comes from the real image dimensions via --ar. -->
+          <button class="project__shot" type="button" style="--ar: 1400 / 709">
+            <img src="assets/images/1.png" width="1400" height="709" loading="lazy" decoding="async"
+                 alt="Ethio Exchange: a table of Ethiopian banks listing buying and selling rates for foreign currencies, with a currency converter panel.">
+            <img src="assets/images/2.png" width="1400" height="710" loading="lazy" decoding="async"
+                 alt="Ethio Exchange: the currency converter view with a converted amount.">
+          </button>
+          <p class="project__media-note">Screenshots</p>
         </div>
-      </div>
-    </article>
 
-    <!-- Secondary project -->
-    <article class="project project--secondary reveal" aria-labelledby="project-2-title">
-      <div class="project__media">
-        <img
-          src="assets/img/project-cardiomegaly.svg"
-          alt="Abstract interface preview of the Cardiomegaly Detection System: an image upload area alongside a Normal or Cardiomegaly classification result panel."
-          width="1200" height="750" loading="lazy" decoding="async">
-        <p class="project__media-note">Abstract interface preview</p>
-      </div>
+        <div class="project__body">
+          <p class="project__kicker">FinTech &middot; Full-Stack</p>
+          <h3 class="project__title" id="project-1-title">Ethio Exchange</h3>
+          <p class="project__subtitle">Ethiopian Bank Exchange Rates &amp; Currency Converter</p>
+          <p class="project__desc">
+            Full-stack financial web platform for comparing foreign-currency exchange rates
+            across Ethiopian banks.
+          </p>
 
-      <div class="project__body">
-        <p class="project__kicker">Machine Learning</p>
-        <h3 class="project__title" id="project-2-title">Cardiomegaly Detection System</h3>
-        <p class="project__desc">
-          AI-powered chest X-ray classification system that classifies uploaded X-ray images
-          as Normal or Cardiomegaly.
-        </p>
-        <p class="project__note">
-          Built as an engineering and machine-learning demonstration. Not a medical device and not
-          a substitute for professional medical diagnosis.
-        </p>
+          <h4 class="project__tech-label">Technology</h4>
+          <ul class="badge-list badge-list--tight">
+            <li class="badge">React</li>
+            <li class="badge">TypeScript</li>
+            <li class="badge">Node.js</li>
+            <li class="badge">REST APIs</li>
+            <li class="badge">Supabase / PostgreSQL</li>
+            <li class="badge">Playwright</li>
+            <li class="badge">Web Scraping</li>
+            <li class="badge">Vercel</li>
+            <li class="badge">Render</li>
+          </ul>
 
-        <ul class="project__features">
-          <li><span class="tick" aria-hidden="true"></span>X-ray image upload</li>
-          <li><span class="tick" aria-hidden="true"></span>Machine-learning classification</li>
-          <li><span class="tick" aria-hidden="true"></span>React frontend</li>
-          <li><span class="tick" aria-hidden="true"></span>Flask backend</li>
-          <li><span class="tick" aria-hidden="true"></span>API integration</li>
-          <li><span class="tick" aria-hidden="true"></span>Database integration</li>
-          <li><span class="tick" aria-hidden="true"></span>Deployed web application</li>
-        </ul>
-
-        <h4 class="project__tech-label">Technology</h4>
-        <ul class="badge-list badge-list--tight">
-          <li class="badge">Python</li>
-          <li class="badge">TensorFlow</li>
-          <li class="badge">Flask</li>
-          <li class="badge">React</li>
-          <li class="badge">MySQL</li>
-          <li class="badge">Machine Learning</li>
-        </ul>
-
-        <div class="project__actions">
-          <a class="btn btn--primary" href="https://cardio-final-ten.vercel.app/" target="_blank" rel="noopener noreferrer">
-            Live Demo
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 5h5v5M19 5l-8 8M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
-            <span class="visually-hidden">— opens cardio-final-ten.vercel.app in a new tab</span>
-          </a>
+          <div class="project__actions">
+            <button class="btn btn--primary" type="button" data-open="p1"
+                    aria-haspopup="dialog">
+              View Project
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 5h5v5M19 5l-8 8M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+            </button>
+            <a class="btn btn--ghost" href="https://ethioexchange.live/en" target="_blank" rel="noopener noreferrer">
+              Live Demo
+              <span class="visually-hidden">— opens ethioexchange.live in a new tab</span>
+            </a>
+            <a class="btn btn--ghost" href="https://github.com/Mebtee" target="_blank" rel="noopener noreferrer"
+               aria-label="GitHub profile of Tamene Behailu">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.6 2.3 5.5 2.6 5.5 2.6a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9c0 4.6 2.7 5.7 5.5 6-.4.4-.5.9-.5 1.5V18"/>
+              </svg>
+              GitHub
+            </a>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
+
+      <!-- ============ 2. Cardiomegaly Detection ============ -->
+      <article class="project project--secondary reveal" data-cats="ai full-stack"
+               aria-labelledby="project-2-title">
+        <div class="project__media">
+          <button class="project__shot" type="button" style="--ar: 1400 / 712">
+            <img src="assets/images/3.png" width="1400" height="712" loading="lazy" decoding="async"
+                 alt="Cardiomegaly Detection System: an X-ray image upload area alongside a classification result.">
+            <img src="assets/images/4.png" width="1400" height="718" loading="lazy" decoding="async"
+                 alt="Cardiomegaly Detection System: the model classification result for an uploaded chest X-ray.">
+          </button>
+          <p class="project__media-note">Screenshots</p>
+        </div>
+
+        <div class="project__body">
+          <p class="project__kicker">Machine Learning</p>
+          <h3 class="project__title" id="project-2-title">Cardiomegaly Detection System</h3>
+          <p class="project__desc">
+            AI-powered chest X-ray classification system for classifying images as
+            Normal or Cardiomegaly.
+          </p>
+          <p class="project__note">
+            Built as an engineering and machine-learning demonstration. Not a medical device
+            and not a substitute for professional medical diagnosis.
+          </p>
+
+          <h4 class="project__tech-label">Technology</h4>
+          <ul class="badge-list badge-list--tight">
+            <li class="badge">Python</li>
+            <li class="badge">TensorFlow</li>
+            <li class="badge">Flask</li>
+            <li class="badge">React</li>
+            <li class="badge">MySQL</li>
+            <li class="badge">Machine Learning</li>
+          </ul>
+
+          <div class="project__actions">
+            <button class="btn btn--primary" type="button" data-open="p2" aria-haspopup="dialog">
+              View Project
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 5h5v5M19 5l-8 8M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+            </button>
+            <a class="btn btn--ghost" href="https://cardio-final-ten.vercel.app/" target="_blank" rel="noopener noreferrer">
+              Live Demo
+              <span class="visually-hidden">— opens cardio-final-ten.vercel.app in a new tab</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ============ 3. LinkedIn Automation ============ -->
+      <article class="project project--secondary reveal" data-cats="ai automation full-stack"
+               aria-labelledby="project-3-title">
+        <div class="project__media">
+          <button class="project__shot" type="button" style="--ar: 1400 / 664">
+            <img src="assets/images/5.png" width="1400" height="664" loading="lazy" decoding="async"
+                 alt="LinkedIn Automation: the opportunities workspace listing content opportunities extracted from source material.">
+            <img src="assets/images/6.png" width="1400" height="687" loading="lazy" decoding="async"
+                 alt="LinkedIn Automation: a content brief and generated post ready for review.">
+          </button>
+          <p class="project__media-note">Screenshots</p>
+        </div>
+
+        <div class="project__body">
+          <p class="project__kicker">AI &middot; Automation</p>
+          <h3 class="project__title" id="project-3-title">LinkedIn Automation</h3>
+          <p class="project__desc">
+            AI-powered LinkedIn content automation platform that transforms learning materials
+            and evidence into recruiter-focused content opportunities, structured posts, and
+            review-ready content.
+          </p>
+
+          <h4 class="project__tech-label">Technology</h4>
+          <ul class="badge-list badge-list--tight">
+            <li class="badge">Next.js</li>
+            <li class="badge">React</li>
+            <li class="badge">TypeScript</li>
+            <li class="badge">Supabase</li>
+            <li class="badge">Tailwind CSS</li>
+            <li class="badge">AI-assisted content generation</li>
+          </ul>
+
+          <div class="project__actions">
+            <button class="btn btn--primary" type="button" data-open="p3" aria-haspopup="dialog">
+              View Project
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 5h5v5M19 5l-8 8M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+            </button>
+            <a class="btn btn--ghost" href="https://github.com/Mebtee/linkedin-Automation" target="_blank" rel="noopener noreferrer">
+              View Repository
+              <span class="visually-hidden">— opens github.com/Mebtee/linkedin-Automation in a new tab</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ============ 4. Stickman Video Director ============ -->
+      <article class="project project--secondary reveal" data-cats="ai creative automation"
+               aria-labelledby="project-4-title">
+        <div class="project__media">
+          <button class="project__shot" type="button" style="--ar: 1400 / 692">
+            <img src="assets/images/7.png" width="1400" height="692" loading="lazy" decoding="async"
+                 alt="Stickman Video Director: a structured video direction document with scene prompts and narration.">
+            <img src="assets/images/8.png" width="1400" height="627" loading="lazy" decoding="async"
+                 alt="Stickman Video Director: generated video prompts for a scene at a chosen aspect ratio.">
+          </button>
+          <p class="project__media-note">Screenshots</p>
+        </div>
+
+        <div class="project__body">
+          <p class="project__kicker">Creative AI</p>
+          <h3 class="project__title" id="project-4-title">Stickman Video Director</h3>
+          <p class="project__desc">
+            AI-assisted video direction workflow that transforms ideas, notes, or scripts into
+            structured short-form video concepts, scene plans, narration, and production-ready
+            prompts.
+          </p>
+
+          <h4 class="project__tech-label">Technology &amp; concepts</h4>
+          <ul class="badge-list badge-list--tight">
+            <li class="badge">AI</li>
+            <li class="badge">Prompt Engineering</li>
+            <li class="badge">Video Generation Workflows</li>
+            <li class="badge">Creative Automation</li>
+            <li class="badge">JavaScript</li>
+            <li class="badge">HTML</li>
+            <li class="badge">CSS</li>
+          </ul>
+
+          <div class="project__actions">
+            <button class="btn btn--primary" type="button" data-open="p4" aria-haspopup="dialog">
+              View Project
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 5h5v5M19 5l-8 8M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+            </button>
+            <a class="btn btn--ghost" href="https://github.com/Mebtee/prompt" target="_blank" rel="noopener noreferrer">
+              View Repository
+              <span class="visually-hidden">— opens github.com/Mebtee/prompt in a new tab</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -821,11 +921,184 @@
 
 </main>
 
+<!-- ========================= PROJECT DETAILS ==========================
+     Native <dialog>, so the browser supplies the modal semantics, focus
+     containment, Escape-to-close and background inerting. Each dialog holds
+     all of its copy in the HTML rather than in JS, so the markup stays the
+     single source of truth. Without JS the dialogs stay closed and the
+     project cards above carry the same summary, links and screenshots.
+     ==================================================================== -->
+
+<dialog class="pdetail" id="p1" aria-labelledby="p1-title">
+  <div class="pdetail__head">
+    <p class="pdetail__kicker">FinTech &middot; Full-Stack</p>
+    <h2 class="pdetail__title" id="p1-title">Ethio Exchange</h2>
+    <p class="pdetail__sub">Ethiopian Bank Exchange Rates &amp; Currency Converter</p>
+    <button class="pdetail__close" type="button" data-close aria-label="Close project details">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="pdetail__shots">
+    <button class="pdetail__shot" type="button" data-zoom="assets/images/1.png"
+            data-zoom-alt="Ethio Exchange bank comparison table.">
+      <img src="assets/images/1.png" width="1400" height="709" loading="lazy" decoding="async"
+           alt="Ethio Exchange bank comparison table.">
+    </button>
+    <button class="pdetail__shot" type="button" data-zoom="assets/images/2.png"
+            data-zoom-alt="Ethio Exchange currency converter.">
+      <img src="assets/images/2.png" width="1400" height="710" loading="lazy" decoding="async"
+           alt="Ethio Exchange currency converter.">
+    </button>
+  </div>
+  <dl class="pdetail__facts">
+    <div><dt>Problem</dt><dd>Buying and selling rates differ between Ethiopian banks and change frequently, so comparing them before converting money means visiting many bank pages by hand.</dd></div>
+    <div><dt>Solution</dt><dd>A platform that collects exchange-rate data from Ethiopian banks, stores it, and presents buying and selling rates side by side with conversion, rankings and per-bank pages.</dd></div>
+    <div><dt>Technology</dt><dd>React, TypeScript, Node.js, REST APIs, Supabase / PostgreSQL, Playwright, web scraping, Vercel, Render.</dd></div>
+    <div><dt>Result</dt><dd>A live, database-backed application for comparing bank rates, converting currency and browsing individual bank rate pages.</dd></div>
+  </dl>
+  <ul class="badge-list badge-list--tight">
+    <li class="badge">React</li><li class="badge">TypeScript</li><li class="badge">Node.js</li>
+    <li class="badge">REST APIs</li><li class="badge">Supabase / PostgreSQL</li>
+    <li class="badge">Playwright</li><li class="badge">Web Scraping</li>
+    <li class="badge">Vercel</li><li class="badge">Render</li>
+  </ul>
+  <div class="pdetail__actions">
+    <a class="btn btn--primary" href="https://ethioexchange.live/en" target="_blank" rel="noopener noreferrer">Live Demo</a>
+    <a class="btn btn--ghost" href="https://github.com/Mebtee" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </div>
+</dialog>
+
+<dialog class="pdetail" id="p2" aria-labelledby="p2-title">
+  <div class="pdetail__head">
+    <p class="pdetail__kicker">Machine Learning</p>
+    <h2 class="pdetail__title" id="p2-title">Cardiomegaly Detection System</h2>
+    <button class="pdetail__close" type="button" data-close aria-label="Close project details">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="pdetail__shots">
+    <button class="pdetail__shot" type="button" data-zoom="assets/images/3.png"
+            data-zoom-alt="Cardiomegaly Detection System upload view.">
+      <img src="assets/images/3.png" width="1400" height="712" loading="lazy" decoding="async"
+           alt="Cardiomegaly Detection System upload view.">
+    </button>
+    <button class="pdetail__shot" type="button" data-zoom="assets/images/4.png"
+            data-zoom-alt="Cardiomegaly Detection System result view.">
+      <img src="assets/images/4.png" width="1400" height="718" loading="lazy" decoding="async"
+           alt="Cardiomegaly Detection System result view.">
+    </button>
+  </div>
+  <dl class="pdetail__facts">
+    <div><dt>Problem</dt><dd>Building an end-to-end machine-learning application where a trained image classifier is genuinely usable from a browser, rather than only in a notebook.</dd></div>
+    <div><dt>Solution</dt><dd>A web application that accepts a chest X-ray upload, scores it with a TensorFlow model served through a Flask API, returns a Normal or Cardiomegaly classification, and stores the result in MySQL.</dd></div>
+    <div><dt>Technology</dt><dd>Python, TensorFlow, Flask, React, MySQL, machine learning.</dd></div>
+    <div><dt>Result</dt><dd>A deployed web application performing image upload, AI classification, API communication and database integration.</dd></div>
+  </dl>
+  <p class="project__note">
+    AI-powered chest X-ray classification system. Built as an engineering and
+    machine-learning demonstration — not a medical device and not a substitute for
+    professional medical diagnosis.
+  </p>
+  <ul class="badge-list badge-list--tight">
+    <li class="badge">Python</li><li class="badge">TensorFlow</li><li class="badge">Flask</li>
+    <li class="badge">React</li><li class="badge">MySQL</li><li class="badge">Machine Learning</li>
+  </ul>
+  <div class="pdetail__actions">
+    <a class="btn btn--primary" href="https://cardio-final-ten.vercel.app/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+  </div>
+</dialog>
+
+<dialog class="pdetail" id="p3" aria-labelledby="p3-title">
+  <div class="pdetail__head">
+    <p class="pdetail__kicker">AI &middot; Automation</p>
+    <h2 class="pdetail__title" id="p3-title">LinkedIn Automation</h2>
+    <button class="pdetail__close" type="button" data-close aria-label="Close project details">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="pdetail__shots">
+    <button class="pdetail__shot" type="button" data-zoom="assets/images/5.png"
+            data-zoom-alt="LinkedIn Automation opportunities workspace.">
+      <img src="assets/images/5.png" width="1400" height="664" loading="lazy" decoding="async"
+           alt="LinkedIn Automation opportunities workspace.">
+    </button>
+    <button class="pdetail__shot" type="button" data-zoom="assets/images/6.png"
+            data-zoom-alt="LinkedIn Automation content brief and post review.">
+      <img src="assets/images/6.png" width="1400" height="687" loading="lazy" decoding="async"
+           alt="LinkedIn Automation content brief and post review.">
+    </button>
+  </div>
+  <dl class="pdetail__facts">
+    <div><dt>Problem</dt><dd>Turning scattered learning material into consistent, recruiter-focused LinkedIn content means repeating the same manual work every time.</dd></div>
+    <div><dt>Solution</dt><dd>A platform that extracts evidence from source material, confirms it, surfaces content opportunities, scores them against recruiters, then generates briefs, drafts and visuals through quality review and approval before publishing.</dd></div>
+    <div><dt>Technology</dt><dd>Next.js, React, TypeScript, Supabase, Tailwind CSS, AI-assisted content generation.</dd></div>
+    <div><dt>Result</dt><dd>An opportunities workspace and a review-ready content pipeline. Publishing to LinkedIn stays a deliberate manual step.</dd></div>
+  </dl>
+  <ul class="badge-list badge-list--tight">
+    <li class="badge">Next.js</li><li class="badge">React</li><li class="badge">TypeScript</li>
+    <li class="badge">Supabase</li><li class="badge">Tailwind CSS</li>
+    <li class="badge">AI-assisted content generation</li>
+  </ul>
+  <div class="pdetail__actions">
+    <a class="btn btn--primary" href="https://github.com/Mebtee/linkedin-Automation" target="_blank" rel="noopener noreferrer">View Repository</a>
+  </div>
+</dialog>
+
+<dialog class="pdetail" id="p4" aria-labelledby="p4-title">
+  <div class="pdetail__head">
+    <p class="pdetail__kicker">Creative AI</p>
+    <h2 class="pdetail__title" id="p4-title">Stickman Video Director</h2>
+    <button class="pdetail__close" type="button" data-close aria-label="Close project details">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <div class="pdetail__shots">
+    <button class="pdetail__shot" type="button" data-zoom="assets/images/7.png"
+            data-zoom-alt="Stickman Video Director scene plan.">
+      <img src="assets/images/7.png" width="1400" height="692" loading="lazy" decoding="async"
+           alt="Stickman Video Director scene plan.">
+    </button>
+    <button class="pdetail__shot" type="button" data-zoom="assets/images/8.png"
+            data-zoom-alt="Stickman Video Director generated prompts.">
+      <img src="assets/images/8.png" width="1400" height="627" loading="lazy" decoding="async"
+           alt="Stickman Video Director generated prompts.">
+    </button>
+  </div>
+  <dl class="pdetail__facts">
+    <div><dt>Problem</dt><dd>Turning an idea into a usable short-form video means planning scenes, writing narration and authoring prompts from scratch each time.</dd></div>
+    <div><dt>Solution</dt><dd>A workflow that turns source material into a one-minute video plan with English narration, director proposals, six scene prompts and Gemini video prompts, with consistent characters across scenes.</dd></div>
+    <div><dt>Technology</dt><dd>AI, prompt engineering, video generation workflows, creative automation, JavaScript, HTML, CSS.</dd></div>
+    <div><dt>Result</dt><dd>Structured short-form video concepts, scene plans, narration and production-ready prompts, supporting 9:16, 16:9 and 1:1 with light or dark visual styles and BGM and sound-effect direction.</dd></div>
+  </dl>
+  <ul class="badge-list badge-list--tight">
+    <li class="badge">AI</li><li class="badge">Prompt Engineering</li>
+    <li class="badge">Video Generation Workflows</li><li class="badge">Creative Automation</li>
+    <li class="badge">JavaScript</li><li class="badge">HTML</li><li class="badge">CSS</li>
+  </ul>
+  <div class="pdetail__actions">
+    <a class="btn btn--primary" href="https://github.com/Mebtee/prompt" target="_blank" rel="noopener noreferrer">View Repository</a>
+  </div>
+</dialog>
+
+<!-- Single shared image viewer. Clicking any screenshot anywhere on the page
+     opens this, so there is no per-project full-screen gallery to build. -->
+<dialog class="lightbox" id="lightbox" aria-label="Screenshot viewer">
+  <button class="lightbox__close" type="button" data-close aria-label="Close screenshot viewer">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+  <!-- src is set from data-zoom when the viewer opens. Deliberately no src
+       attribute: an empty src resolves to the document URL and re-requests it. -->
+  <img class="lightbox__img" id="lightbox-img" alt="">
+  <p class="lightbox__cap" id="lightbox-cap"></p>
+</dialog>
+
 <!-- =============================== FOOTER ============================ -->
 <footer class="site-footer">
   <div class="container site-footer__inner">
     <div class="site-footer__brand">
-      <span class="brand__mark brand__mark--lg" aria-hidden="true">TB</span>
+      <span class="brand__mark brand__mark--lg">
+        <img class="brand__logo" src="assets/images/logo-badge.png" alt="" width="112" height="112" loading="lazy" decoding="async">
+      </span>
       <div>
         <p class="site-footer__name">Tamene Behailu</p>
         <p class="site-footer__role">Full-Stack Software Engineer <span class="timeline__sep">|</span> QA Engineer</p>
