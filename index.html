@@ -191,6 +191,39 @@
     </ul>
   </div>
 
+  <!-- How the work moves. Real HTML text rather than SVG labels, so it stays
+       legible from 320px up and is announced correctly by assistive tech; a
+       single element translates along the rail, so it stays cheap. It sits in
+       its own band below the text, never behind the headline. -->
+  <div class="container pipeline">
+    <ol class="pipeline__chain" aria-label="How a request moves through the stack">
+      <li class="pipeline__node">
+        <span class="pipeline__dot" aria-hidden="true"></span>
+        <span class="pipeline__label">Frontend</span>
+      </li>
+      <li class="pipeline__node">
+        <span class="pipeline__dot" aria-hidden="true"></span>
+        <span class="pipeline__label">API</span>
+      </li>
+      <li class="pipeline__node">
+        <span class="pipeline__dot" aria-hidden="true"></span>
+        <span class="pipeline__label">Backend</span>
+      </li>
+      <li class="pipeline__node">
+        <span class="pipeline__dot" aria-hidden="true"></span>
+        <span class="pipeline__label">Database</span>
+      </li>
+      <li class="pipeline__node">
+        <span class="pipeline__dot" aria-hidden="true"></span>
+        <span class="pipeline__label">Cloud</span>
+      </li>
+    </ol>
+    <p class="pipeline__qa">
+      <span class="eyebrow__dot" aria-hidden="true"></span>
+      Quality assurance runs across every stage
+    </p>
+  </div>
+
   <a class="hero__scroll" href="#status" aria-label="Scroll to next section">
     <span class="hero__scroll-track" aria-hidden="true"><span class="hero__scroll-dot"></span></span>
   </a>

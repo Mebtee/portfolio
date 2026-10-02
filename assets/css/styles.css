@@ -556,6 +556,151 @@ img { height: auto; }
 .social-link .icon { width: 1rem; height: 1rem; }
 .social-link:hover { color: var(--accent); }
 
+/* --------------------------------------------------------------------------
+   Hero pipeline
+   Frontend → API → Backend → Database → Cloud, with quality assurance across
+   the whole chain. Plain HTML and CSS: a horizontal rail on wide screens, a
+   vertical one on phones. The only motion is one short element translating
+   along the rail (composited transform), so it costs almost nothing and never
+   sits behind the headline.
+   -------------------------------------------------------------------------- */
+.pipeline {
+  --wire: clamp(1.1rem, 3.6vw, 2.75rem);
+  margin-top: clamp(2.75rem, 6vw, 4rem);
+}
+
+.pipeline__chain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--wire);
+}
+
+.pipeline__node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  /* Equal widths keep the rail geometry exact: every dot then sits the same
+     distance from its neighbour, so the connectors always line up. */
+  width: clamp(4.6rem, 14vw, 7.4rem);
+  text-align: center;
+}
+
+.pipeline__dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: #7dd3fc;
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.10);
+  transition: transform 320ms var(--ease), box-shadow 320ms var(--ease);
+}
+
+.pipeline__label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  transition: color 320ms var(--ease);
+}
+
+/* Rail: a static hairline plus a light travelling along it. Both sit at the
+   height of the dot centres and span exactly one gap. */
+.pipeline__node:not(:first-child)::before,
+.pipeline__node:not(:first-child)::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: calc(-1 * var(--wire));
+  height: 1px;
+}
+.pipeline__node:not(:first-child)::before {
+  width: var(--wire);
+  background: linear-gradient(90deg,
+    rgba(56, 189, 248, 0.10), rgba(56, 189, 248, 0.45), rgba(56, 189, 248, 0.10));
+}
+.pipeline__node:not(:first-child)::after {
+  width: calc(var(--wire) * 0.45);
+  background: linear-gradient(90deg, transparent, #7dd3fc, transparent);
+  animation: pipelineFlow 2.8s linear infinite;
+}
+/* Staggered so the light reads as one pulse crossing the chain. */
+.pipeline__node:nth-child(2)::after { animation-delay: 0s; }
+.pipeline__node:nth-child(3)::after { animation-delay: 0.7s; }
+.pipeline__node:nth-child(4)::after { animation-delay: 1.4s; }
+.pipeline__node:nth-child(5)::after { animation-delay: 2.1s; }
+
+@keyframes pipelineFlow {
+  0%   { transform: translateX(-130%); opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateX(230%); opacity: 0; }
+}
+
+/* Hover is an enhancement only: every label is legible without it. */
+.pipeline__node:hover .pipeline__dot {
+  transform: scale(1.35);
+  box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.14), 0 0 16px rgba(56, 189, 248, 0.45);
+}
+.pipeline__node:hover .pipeline__label { color: #e8f6ff; }
+
+.pipeline__qa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: clamp(1.5rem, 3vw, 2rem) auto 0;
+  padding: 0.5rem 0.95rem;
+  border: 1px dashed var(--border-strong);
+  border-radius: 999px;
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Phones: the same chain, read top to bottom. */
+@media (max-width: 600px) {
+  .pipeline { --wire: 0.9rem; }
+  .pipeline__chain { flex-direction: column; align-items: stretch; gap: var(--wire); }
+  .pipeline__node {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8rem;
+    width: auto;
+    text-align: left;
+  }
+  .pipeline__node:not(:first-child)::before,
+  .pipeline__node:not(:first-child)::after {
+    top: calc(50% - var(--wire));
+    left: 4px;
+    width: 1px;
+    height: var(--wire);
+  }
+  .pipeline__node:not(:first-child)::before {
+    background: linear-gradient(180deg,
+      rgba(56, 189, 248, 0.10), rgba(56, 189, 248, 0.45), rgba(56, 189, 248, 0.10));
+  }
+  .pipeline__node:not(:first-child)::after {
+    width: 1px;
+    height: calc(var(--wire) * 0.45);
+    background: linear-gradient(180deg, transparent, #7dd3fc, transparent);
+    animation-name: pipelineFlowY;
+  }
+}
+
+@keyframes pipelineFlowY {
+  0%   { transform: translateY(-130%); opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(230%); opacity: 0; }
+}
+
 .hero__scroll {
   display: none;
   position: absolute;
@@ -1371,6 +1516,12 @@ main { position: relative; z-index: 1; }
   }
   .js .reveal { opacity: 1; transform: none; }
   .hero__network, .hero__glow { animation: none !important; }
+
+  /* The pipeline freezes to a static, fully legible diagram: the rail is
+     always drawn, so nothing is lost without the travelling light. */
+  .pipeline__node::after { display: none; }
+  .pipeline__node:hover .pipeline__dot { transform: none; box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.10); }
+  .pipeline__node:hover .pipeline__label { color: var(--text-faint); }
 }
 
 /* Ambient hero movement — slow and subtle */
@@ -1470,13 +1621,18 @@ main { position: relative; z-index: 1; }
     border: 1px solid CanvasText;
   }
   .hero__grid, .hero__scanlines, .status__pulse::after { display: none; }
+  /* Keep the pipeline's own colours: it is an illustration, not content, and
+     its rail would otherwise disappear against the forced background. */
+  .pipeline { forced-color-adjust: none; }
 }
 
 /* Print — recruiters print résumés from the browser */
 @media print {
   body { background: #fff; color: #000; }
   body::before, .site-header, .hero__bg, .hero__scroll, .nav-scrim, .contact__actions,
-  .project__actions, .site-footer__top, .skip-link { display: none !important; }
+  .project__actions, .site-footer__top, .skip-link, .filters, .pipeline__node::after {
+    display: none !important;
+  }
   .section { padding-block: 1.5rem; page-break-inside: avoid; }
   .section--alt, .project, .timeline__card, .profile-card, .contact {
     background: #fff !important;
