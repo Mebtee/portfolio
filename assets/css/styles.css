@@ -336,20 +336,29 @@ img { height: auto; }
   color: var(--text);
   flex: none;
 }
+/* The supplied logo is dark navy artwork (#011531) on an opaque near-white
+   plate (#f8f9fa) with no alpha channel. Measured against the header
+   background (#070a10) that is 1.09:1 — invisible — while the white plate
+   itself is 18.8:1. So the plate is kept and used as a light badge: the
+   artwork stays pixel-for-pixel as supplied and stays legible. */
 .brand__mark {
   display: grid;
   place-items: center;
   width: 38px; height: 38px;
   flex: none;
-  border: 1px solid var(--border-accent);
   border-radius: 10px;
-  background: linear-gradient(160deg, rgba(56, 189, 248, 0.2), rgba(56, 189, 248, 0.04));
-  color: #e8f6ff;
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  background: #f8f9fa;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.55),
+              0 2px 10px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
 }
-.brand__mark--lg { width: 44px; height: 44px; font-size: 1rem; border-radius: 12px; }
+.brand__logo {
+  display: block;
+  width: 100%; height: 100%;
+  /* The source is square (1:1), so contain can never letterbox or stretch. */
+  object-fit: contain;
+}
+.brand__mark--lg { width: 44px; height: 44px; border-radius: 12px; }
 .brand__text { display: none; flex-direction: column; line-height: 1.25; }
 .brand__name { font-size: 0.95rem; font-weight: 650; color: #fff; }
 .brand__role { font-size: 0.75rem; color: var(--text-faint); }
