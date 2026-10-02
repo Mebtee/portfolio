@@ -82,8 +82,10 @@
 
     /* Safety net: never leave content permanently invisible. An observer
        callback can be skipped during very fast scrolling or on jump-scroll
-       (End key, anchor deep-link, restored scroll position). Anything that
-       has already reached the viewport gets shown regardless. */
+       (End key, anchor deep-link, restored scroll position). Anything that has
+       already reached the viewport gets shown regardless. Only runs on scroll:
+       the observer's own initial callback covers what is visible at load, and
+       eagerly measuring here would force a synchronous layout at parse time. */
     tickers.push(function () {
       if (!pendingReveals.length) return;
       var limit = window.scrollY + window.innerHeight + 120;
@@ -99,7 +101,6 @@
       }
       pendingReveals = rest;
     });
-    onScroll();
   }
 
   /* ------------------------------------------------------------------
@@ -196,6 +197,7 @@
      ------------------------------------------------------------------ */
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav__link[href^="#"]'));
   var targets = [];
+  var headerH = 0;
 
   function buildTargets() {
     targets = navLinks.map(function (link) {
@@ -207,6 +209,11 @@
     targets.forEach(function (t) {
       t.top = t.section.getBoundingClientRect().top + window.scrollY;
     });
+
+    /* Cached here rather than read per frame: the header height only changes
+       on resize, and measuring it during the scroll ticker would force a
+       synchronous layout on every frame. */
+    headerH = header ? header.getBoundingClientRect().height : 0;
 
     /* The nav order is Home, About, Experience, Projects, Skills, Contact,
        which is not the document order. `currentSection` relies on ascending
@@ -225,7 +232,6 @@
 
   function currentSection() {
     if (!targets.length) return;
-    var headerH = header ? header.getBoundingClientRect().height : 0;
 
     // At the document bottom, always highlight the last section: the final
     // one may be shorter than the viewport and never reach the probe.
