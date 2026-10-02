@@ -13,12 +13,14 @@ framework, no build step, no runtime dependencies.
 | Concern      | Choice                                  | Why                                                              |
 | ------------ | --------------------------------------- | ---------------------------------------------------------------- |
 | Markup       | Semantic HTML5                          | Single document, one `<h1>`, no skipped heading levels             |
-| Styling      | Hand-written CSS, custom properties     | ~24 KB, no framework, no dead code shipped                         |
-| Behaviour    | Vanilla JS, ~7 KB                       | Progressive enhancement only — the page is complete without it     |
+| Styling      | Hand-written CSS, custom properties     | ~51 KB raw / 12 KB gzipped, no framework, no dead rules            |
+| Behaviour    | Vanilla JS, ~15 KB                     | Progressive enhancement only — the page is complete without it     |
 | Typeface     | Self-hosted Inter variable font         | One 47 KB file covers all weights; no Google Fonts round trip      |
-| Icons        | Inline SVG + one sprite-free system font| No icon library, no extra requests                                 |
+| Icons        | Inline SVG                              | No icon library, no extra requests                                 |
 
-Total first-load payload is roughly **140 KB** across 8 requests.
+First-load payload is **~85 KB gzipped across 8 requests** (183 KB uncompressed). The eight
+project screenshots total 0.8 MB and are `loading="lazy"`, so they never enter the critical
+path.
 
 ---
 
@@ -35,26 +37,44 @@ assets/
     fonts.css               @font-face for the self-hosted Inter subsets
     styles.css              design system + all components
   js/
-    main.js                 nav, scroll-spy, reveals, hash handling
+    main.js                 nav, scroll-spy, reveals, filters, dialogs, viewer
   fonts/
     inter-latin-var.woff2       latin subset (loaded)
     inter-latin-ext-var.woff2   latin-ext subset (loaded on demand only)
+  images/
+    logo.png                the personal logo, as supplied (1:1, near-white plate)
+    logo-badge.png          112px downscale of the above — the header/footer mark
+    1.png … 8.png           real project screenshots, two per project
   img/
     favicon.svg
+    apple-touch-icon.png    180px logo for iOS home screens
     og-image.png            1200x630 social card
-    project-*.svg           abstract interface previews
 tools/
   make-og.py                regenerates og-image.png (needs Pillow)
 ```
+
+`assets/images/logo.png` is the only asset in the repo the page never loads; it exists as the
+source that `make-og.py` and the icon derivatives are generated from.
 
 ---
 
 ## Features
 
-- **Sticky navigation** that becomes opaque once you scroll, with an active-section
-  indicator driven by a deterministic scroll-spy.
+- **Sticky navigation** with the supplied logo on the left, a deterministic scroll-spy
+  indicator, and a "Let's Talk" CTA.
 - **Mobile navigation** as a slide-in panel: hamburger toggle, scrim, `Escape` to close,
   focus moved in on open and returned to the toggle on close, and Tab trapped while open.
+- **Hero pipeline** — Frontend → API → Backend → Database → Cloud, with QA across the chain.
+  Plain HTML and CSS: a horizontal rail on wide screens, a vertical one on phones. The only
+  motion is one short element translating along the rail, so it composites cheaply, sits
+  below the headline rather than behind it, and costs no layout.
+- **Four real projects**, each with two screenshots, technology tags, live links, and a
+  native `<dialog>` detail view (problem / solution / technology / result).
+- **Screenshot gallery** where the first shot is shown, the second is revealed on hover or
+  keyboard focus, and any frame opens one shared viewer. Touch devices get both shots
+  stacked instead of a hover-only reveal.
+- **Category filters** (All / Full-Stack / AI / ML / Automation / Creative AI) built on plain
+  buttons with `aria-pressed`, over a list that is complete and readable without JS.
 - **Scroll reveals** that fade content in, with a hard safety net so content can never
   get stuck invisible if a transition is dropped.
 - **Fully responsive** from 320 px up. The mobile layout is a genuine reflow — two-column
@@ -70,17 +90,21 @@ tools/
 
 ## Measured results
 
-Lighthouse 13, Chrome headless, served locally.
+Lighthouse 12, Chrome headless, served locally.
 
 |           | Performance | Accessibility | Best Practices | SEO    |
 | --------- | ----------- | ------------- | -------------- | ------ |
 | Desktop   | **100**     | 100           | 100            | 100    |
-| Mobile    | **98**      | 100           | 100            | 100    |
+| Mobile    | **91**      | 100           | 100            | 100    |
 
 Mobile Core Web Vitals on the emulated mid-range profile:
-FCP 1.6 s · LCP 1.8 s · TBT 80 ms · CLS 0.
+FCP 1.7 s · LCP 2.0 s · TBT 270 ms · CLS 0.
 
 Worst-case text contrast is 5.96:1, against the WCAG AA requirement of 4.5:1.
+
+The remaining mobile cost is first-paint style and layout for the decorative hero layers
+(grid mask, glows, sticky-header blur), not scripting: the page ships 4.6 KB gzipped of JS
+and there is no library.
 
 ---
 
@@ -93,14 +117,19 @@ Every claim on the page is real. There are deliberately **no**:
 - percentage skill bars or "expert" proficiency labels
 - placeholder copy
 - fabricated GitHub repository links
+- invented deployment URLs
 
-Project previews are labelled *abstract interface preview* because they are abstract
-wireframes, not screenshots. Skill groups are flat technology badges for the same reason —
-a percentage bar would be a made-up number.
+Project screenshots are the running software, not mock-ups: two per project, in the order
+they are captured. Skill groups are flat technology badges for the same reason as above — a
+percentage bar would be a made-up number.
 
 The Cardiomegaly project is described as an *AI-powered chest X-ray classification
 system* with an explicit note that it is not a medical device and not a substitute for
 professional diagnosis.
+
+Only the Ethio Exchange and Cardiomegaly Detection projects are deployed; the LinkedIn
+Automation and Stickman Video Director entries link to their repositories and carry no demo
+link rather than an invented one.
 
 ---
 
@@ -126,8 +155,8 @@ Before deploying, replace the placeholder domain. It currently appears in four p
 - `robots.txt` — `Sitemap:`
 - `sitemap.xml` — `<loc>`
 
-If you deploy to a different domain, also regenerate the social card so the URL baked into
-the image metadata matches:
+The social card bakes the name, role and logo in rather than the domain, so it needs no
+regeneration when the host changes. Rebuild it only if that copy changes:
 
 ```bash
 python tools/make-og.py
