@@ -1,7 +1,7 @@
 {
   "name": "Tamene Behailu — Full-Stack Software Engineer",
   "short_name": "Tamene Behailu",
-  "description": "Full-Stack Software Engineer with experience in React, Next.js, TypeScript, Node.js, Python, databases, APIs, cloud deployment, and software quality assurance.",
+  "description": "Full-Stack Software Engineer and QA Engineer building reliable web applications, AI-powered systems, automation tools, and data-driven products.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -12,6 +12,12 @@
       "src": "assets/img/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
       "purpose": "any"
     }
   ]
